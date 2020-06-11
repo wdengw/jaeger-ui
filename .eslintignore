@@ -1,3 +1,8 @@
 build
 coverage
 packages/plexus/src/LayoutManager/layout.worker*js*
+packages/jaeger-ui/src/actions/txn-loader-api.test.js
+packages/jaeger-ui/src/actions/txn-loader-api.tsx
+packages/jaeger-ui/src/components/SearchTracePage/TransactionLoader.tsx
+packages/jaeger-ui/src/components/SearchTracePage/TransactionLoader.tsx
+packages/jaeger-ui/src/utils/readTxnFile.tsx
