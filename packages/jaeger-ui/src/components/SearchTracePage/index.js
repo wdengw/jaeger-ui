@@ -27,6 +27,7 @@ import SearchResults, { sortFormSelector } from './SearchResults';
 import { isSameQuery, getUrl, getUrlState } from './url';
 import * as jaegerApiActions from '../../actions/jaeger-api';
 import * as fileReaderActions from '../../actions/file-reader-api';
+import * as txnLoaderActions from '../../actions/txn-loader-api';
 import ErrorMessage from '../common/ErrorMessage';
 import LoadingIndicator from '../common/LoadingIndicator';
 import { getLocation as getTraceLocation } from '../TracePage/url';
@@ -35,6 +36,7 @@ import { fetchedState } from '../../constants';
 import { sortTraces } from '../../model/search';
 import { stripEmbeddedState } from '../../utils/embedded-url';
 import FileLoader from './FileLoader';
+import TransactionLoader from './TransactionLoader';
 
 import './index.css';
 import JaegerLogo from '../../img/jaeger-logo.svg';
@@ -89,6 +91,7 @@ export class SearchTracePageImpl extends Component {
       traceResults,
       queryOfResults,
       loadJsonTraces,
+      loadTxnTraces,
       urlQueryParams,
     } = this.props;
     const hasTraceResults = traceResults && traceResults.length > 0;
@@ -106,6 +109,9 @@ export class SearchTracePageImpl extends Component {
                 <TabPane tab="JSON File" key="fileLoader">
                   <FileLoader loadJsonTraces={loadJsonTraces} />
                 </TabPane>
+                <TabPane tab="Txn Loader" key="txnLoader">
+                  <TransactionLoader loadTxnTraces={loadTxnTraces} />
+              </TabPane>
               </Tabs>
             </div>
           </Col>
@@ -190,6 +196,7 @@ SearchTracePageImpl.propTypes = {
     })
   ),
   loadJsonTraces: PropTypes.func,
+  loadTxnTraces: PropTypes.func,
 };
 
 const stateTraceXformer = memoizeOne(stateTrace => {
@@ -271,6 +278,7 @@ function mapDispatchToProps(dispatch) {
     dispatch
   );
   const { loadJsonTraces } = bindActionCreators(fileReaderActions, dispatch);
+  const { loadTxnTraces } = bindActionCreators(txnLoaderActions, dispatch);
   const { cohortAddTrace, cohortRemoveTrace } = bindActionCreators(traceDiffActions, dispatch);
   return {
     cohortAddTrace,
@@ -280,6 +288,7 @@ function mapDispatchToProps(dispatch) {
     fetchServices,
     searchTraces,
     loadJsonTraces,
+    loadTxnTraces,
   };
 }
 

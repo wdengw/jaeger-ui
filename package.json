@@ -72,7 +72,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all -ln --parallel lint test"
     }
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
   }
 }
