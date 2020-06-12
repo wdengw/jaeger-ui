@@ -23,12 +23,12 @@ type TxnFileLoaderProps = {
 
 export default function TxnFileLoader(props: TxnFileLoaderProps) {
   return (
-    <Dragger accept=".txt" customRequest={props.loadTxnTraces} multiple>
+    <Dragger accept=".txt,.log,.csv,.tsv" customRequest={props.loadTxnTraces} multiple>
       <p className="ant-upload-drag-icon">
         <Icon type="file-add" />
       </p>
       <p className="ant-upload-text">Click or drag transaction log file to this area.</p>
-      <p className="ant-upload-hint">File containing strati V4 log format data and V2 transaction log format data is supported.</p>
+      <p className="ant-upload-hint">Files containing strati V4 log format data and/or V2 transaction log format data, and with extension .txt, .log, .tsv, or .csv is supported.</p>
     </Dragger>
   );
 }

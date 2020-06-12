@@ -106,12 +106,12 @@ export class SearchTracePageImpl extends Component {
                 <TabPane tab="Search" key="searchForm">
                   {!loadingServices && services ? <SearchForm services={services} /> : <LoadingIndicator />}
                 </TabPane>
+                <TabPane tab="Txn Loader" key="txnLoader">
+                  <TransactionLoader loadTxnTraces={loadTxnTraces} />
+                </TabPane>
                 <TabPane tab="JSON File" key="fileLoader">
                   <FileLoader loadJsonTraces={loadJsonTraces} />
                 </TabPane>
-                <TabPane tab="Txn Loader" key="txnLoader">
-                  <TransactionLoader loadTxnTraces={loadTxnTraces} />
-              </TabPane>
               </Tabs>
             </div>
           </Col>

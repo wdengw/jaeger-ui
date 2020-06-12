@@ -26,7 +26,19 @@ export default function readTxnFile(txnFileList: { file: File }) {
 		}
 	}
 	delete options.headers['Content-Type'];
-
-	fetch('http://localhost:8080/upload-txn-file', options)
-	console.log("Done!")
+    const  uri = process.env.REACT_APP_TXN_LOADER_URL
+    if (uri !== undefined) {
+	    const url = uri + "/upload-txn-file"
+		console.log("URL: " + url + ".")
+		fetch(url, options)
+			.then(response => response.text())
+			.then(data => {
+				if (data == "true") {
+					window.location.reload(false)
+				}
+			})
+			.catch((error) => {
+				console.error("Error: ", error)
+			})
+	}
 }
