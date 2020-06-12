@@ -30,6 +30,7 @@ declare const process: {
     NODE_ENV: string;
     REACT_APP_GA_DEBUG?: string;
     REACT_APP_VSN_STATE?: string;
+    REACT_APP_TXN_LOADER_URL?:string;
   }
 }
 
