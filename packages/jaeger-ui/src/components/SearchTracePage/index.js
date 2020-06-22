@@ -92,11 +92,18 @@ export class SearchTracePageImpl extends Component {
       queryOfResults,
       loadJsonTraces,
       loadTxnTraces,
+//      findTxns,
       urlQueryParams,
     } = this.props;
     const hasTraceResults = traceResults && traceResults.length > 0;
     const showErrors = errors && !loadingTraces;
     const showLogo = isHomepage && !hasTraceResults && !loadingTraces && !errors;
+/*
+                <TabPane tab="Txn Finder" key="txnFinder">
+                  <TransactionFinder findTxns={findTxns} />
+                </TabPane> 
+
+ */
     return (
       <Row className="SearchTracePage--row">
         {!embedded && (
@@ -106,7 +113,7 @@ export class SearchTracePageImpl extends Component {
                 <TabPane tab="Search" key="searchForm">
                   {!loadingServices && services ? <SearchForm services={services} /> : <LoadingIndicator />}
                 </TabPane>
-                <TabPane tab="Txn Loader" key="txnLoader">
+                <TabPane tab="Txn File" key="txnLoader">
                   <TransactionLoader loadTxnTraces={loadTxnTraces} />
                 </TabPane>
                 <TabPane tab="JSON File" key="fileLoader">
@@ -197,6 +204,7 @@ SearchTracePageImpl.propTypes = {
   ),
   loadJsonTraces: PropTypes.func,
   loadTxnTraces: PropTypes.func,
+//  findTxns: PropTypes.func,
 };
 
 const stateTraceXformer = memoizeOne(stateTrace => {
